@@ -1,8 +1,11 @@
 package com.sales.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,10 +37,16 @@ public class ProductsController {
 	}
 	
 	@PostMapping(value = "/add-product")
-	public String submitNewProduct(@ModelAttribute ("Product") Product product ){
+	public String submitNewProduct(@Valid @ModelAttribute ("Product") Product product, BindingResult result ){
 		
-		prodService.addProduct(product);
-		return "redirect:all-products";
+		if (result.hasErrors()) {
+			return "addProduct";
+			
+		} else {
+			prodService.addProduct(product);
+			return "redirect:all-products";
+		}
+		
 	}
 	
 }

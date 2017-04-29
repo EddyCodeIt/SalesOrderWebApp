@@ -22,7 +22,7 @@ public class Product {
 	private Long pId;
 	
 	@Column(name="PDESC")
-	@NotBlank
+	@NotBlank(message = "pDesc can not be blank!") // message overriden by messages.propeties file
 	private String pDesc;
 	
 	@Column(name="QTYINSTOCK")

@@ -16,6 +16,7 @@ public class CustomersController {
 	
 	@GetMapping(value = "/all-customers")
 	public String getAllCustomers(Model model){
+							// items in jsp 
 		 model.addAttribute("AllCustomers", custService.getCustomers());
 		return "allCustomers";
 	}
