@@ -21,4 +21,14 @@ public class CustomersService {
 	}
 	
 	// Add customer method
+	
+	 public void addCustomer(Customer cust){
+		 
+		try {
+			 repo.saveAndFlush(cust);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	 }
+	
 }
